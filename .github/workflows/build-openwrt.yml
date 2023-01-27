@@ -36,7 +36,7 @@ env:
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
-  UPLOAD_RELEASE: true
+  UPLOAD_RELEASE: false
   TZ: Asia/Shanghai
 
 jobs:
@@ -105,10 +105,10 @@ jobs:
         cd openwrt/package 
         git clone https://github.com/kuoruan/luci-app-frpc.git
         
-    #- name: luci-app-adguardhome
-    #  run: |
-   #   cd openwrt/package 
-     #   git clone https://github.com/uamrws/luci-app-adguardhome.git
+    - name: luci-app-adguardhome
+      run: |
+        cd openwrt/package 
+        git clone https://github.com/rufengsuixing/luci-app-adguardhome
     
     - name: Load custom feeds
       run: |
