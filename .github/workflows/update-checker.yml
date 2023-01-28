@@ -28,7 +28,7 @@ env:
 on:
   workflow_dispatch:
   schedule:
-    - cron: 0 */1 * * *
+    - cron: 0 */12 * * *
 
 jobs:
   check:
@@ -90,7 +90,7 @@ jobs:
         event-type: Source Code Update
 
     - name: Delete workflow runs
-      uses: Lenyu2020/delete-workflow-runs@main
+      uses: lsbst1986/delete-workflow-runs@main
       with:
         retain_days: 1
         keep_minimum_runs: 1
