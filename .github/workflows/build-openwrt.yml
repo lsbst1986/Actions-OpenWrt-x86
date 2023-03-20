@@ -95,10 +95,15 @@ jobs:
         cd openwrt/package 		
         git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git luci-theme-argonn
         
-    - name: aliyundrive-webdav
+    - name: luci-app-unblockneteasemusic
       run: |
         cd openwrt/package 
-        git clone https://github.com/messense/aliyundrive-webdav.git
+        git clone --branch master https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git
+        
+    #- name: aliyundrive-webdav
+      #run: |
+        #cd openwrt/package 
+        #git clone https://github.com/messense/aliyundrive-webdav.git
        
     - name: luci-app-frpc
       run: |
@@ -108,21 +113,19 @@ jobs:
     - name: luci-app-adguardhome
       run: |
         cd openwrt/package 
-        git clone https://github.com/rufengsuixing/luci-app-adguardhome
+        git clone https://github.com/lsbst1986/luci-app-adguardhome.git
     
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
-        
+        $GITHUB_WORKSPACE/$DIY_P1_SH        
    
-    - name: lenyu
-      run: |
-        cd openwrt 
-        bash  lenyu.sh
-
+    #- name: lenyu
+      #run: |
+        #cd openwrt 
+        #bash  lenyu.sh
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
@@ -177,11 +180,10 @@ jobs:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
    
-    - name: delete files
+    - name: Delete files
       run: |
         cd openwrt 
-        bash  rename.sh
-    
+        bash  delete.sh
 
     - name: Organize files
       id: organize
@@ -247,11 +249,11 @@ jobs:
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
 
-    - name: Delete workflow runs
-      uses: Lenyu2020/delete-workflow-runs@main
-      with:
-        retain_days: 1
-        keep_minimum_runs: 5
+    #- name: Delete workflow runs
+      #uses: lsbst1986/delete-workflow-runs@main
+      #with:
+        #retain_days: 1
+        #keep_minimum_runs: 5
 
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@v0.2.1
