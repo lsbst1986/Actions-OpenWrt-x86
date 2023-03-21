@@ -98,7 +98,7 @@ jobs:
     - name: luci-app-unblockneteasemusic
       run: |
         cd openwrt/package 
-        git clone --branch master https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git
+        git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git
         
     #- name: aliyundrive-webdav
       #run: |
